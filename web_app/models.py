@@ -7,12 +7,20 @@ db = SQLAlchemy()
 # Create a migration object
 migrate = Migrate()
 
+# Define a User class 
+class User(db.Model):
+    id              = db.Column(db.BigInteger, primary_key=True)
+    screen_name     = db.Column(db.String(128), nullable=False)
+    name            = db.Column(db.String)
+    location        = db.Column(db.String)
+    followers_count = db.Column(db.Integer)
+
 # Define a Tweet class which "extends" the Model class
 class Tweet(db.Model):
-    id      = db.Column(db.Integer, primary_key=True)
-    tweet   = db.Column(db.String(280))
-    handle  = db.Column(db.String(128))
-    name    = db.Column(db.String(256))
+    id          = db.Column(db.Integer, primary_key=True)
+    user_id     = db.Column(db.BigInteger, db.ForeignKey("user.id"))
+    full_text   = db.Column(db.String(512))
+    embedding   = db.Column(db.PickleType) # used to serialize a Python object (and store in the db)
 
 # parse_rows parses db rows into json documents
 def parse_rows(db_rows):
