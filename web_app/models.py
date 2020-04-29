@@ -22,6 +22,8 @@ class Tweet(db.Model):
     full_text   = db.Column(db.String(512))
     embedding   = db.Column(db.PickleType) # used to serialize a Python object (and store in the db)
 
+    user = db.relationship("User", backref=db.backref("tweets", lazy=True))
+    
 # parse_rows parses db rows into json documents
 def parse_rows(db_rows):
     """
