@@ -12,29 +12,11 @@ auth.set_access_token(TWITTER_API_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 
 if __name__ == "__main__":
-    print("-----------------")
-    print("USER")
-    user = api.get_user("elonmusk")
-    print(type(user)) #> <class 'tweepy.models.User'>
-    print(user.screen_name)
-    print(user.id)
-    print(user.statuses_count)
+    print("INFO: test fetching data from the Twitter API")
 
-    print("-----------------")
-    print("STATUSES")
-    #statuses = api.user_timeline("elonmusk", count=35)
-    #for status in statuses:
-    #    print("--")
-    #    print(status.text)
-
-    statuses = api.user_timeline("elonmusk", tweet_mode="extended", count=35, exclude_replies=True, include_rts=False)
-    for status in statuses:
-        print("--")
-        print(status.full_text)
-
+    user = api.get_user("@ycombinator")
+    statuses = api.user_timeline("@ycombinator", tweet_mode="extended", count=35, exclude_replies=True, include_rts=False)
     status = statuses[0]
-    print(type(status)) #> <class 'tweepy.models.Status'>
 
-    print(status.id)
-    print(status.full_text)
+    print(f"INFO: first status for '@ycombinator': {status}")
     
