@@ -16,8 +16,6 @@ from web_app.models import db
 # Define a Blueprint instance with this module name
 admin_routes = Blueprint("admin_routes", __name__)
 
-print(f"DEBUG: my curent module name is: {__name__}")
-
 # Define a reset route
 @admin_routes.route("/admin/db/reset")
 def reset_db():
