@@ -22,7 +22,7 @@ def train_and_persist_model():
     classifier.fit(X, y)
 
     # Persist the model to disk
-    print("INFO: save the classifie model to disk")
+    print("INFO: save the classifier model to disk")
     with open(MODEL_FILEPATH, "wb") as model_file:
         pickle.dump(classifier, model_file)
 
@@ -43,7 +43,6 @@ if __name__ == "__main__":
     train_and_persist_model()
 
     # Load model from disk
-    print("INFO: loading classifer model from disk")
     clf = load_model()
     print("INFO: classifer model:", clf)
 
@@ -53,4 +52,4 @@ if __name__ == "__main__":
 
     # Generate predictions
     result = clf.predict(inputs_pred)
-    print("INFO: prediction results:", result)
+    print("INFO: prediction test results:", result)

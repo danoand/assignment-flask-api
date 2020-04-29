@@ -43,4 +43,3 @@ def parse_rows(db_rows):
 
     # Return the compiled set (list) of row dicts
     return parsed_rows
-
