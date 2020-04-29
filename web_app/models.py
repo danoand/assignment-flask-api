@@ -2,7 +2,7 @@
 from flask_sqlalchemy import SQLAlchemy 
 from flask_migrate import Migrate 
 
-# Create a SQLAlchemy object
+# Create a SQLAlchemy databse object
 db = SQLAlchemy()
 # Create a migration object
 migrate = Migrate()
