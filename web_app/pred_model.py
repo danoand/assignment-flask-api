@@ -48,10 +48,9 @@ if __name__ == "__main__":
     print("INFO: classifer model:", clf)
 
     # Load iris data - to execute a test prediction
-    X, y = load_model(return_X_y=True)
+    X, y = load_iris(return_X_y=True)
     inputs_pred = X[:2, :]
 
     # Generate predictions
     result = clf.predict(inputs_pred)
-    print("INFOR: prediction results:", result)
-
+    print("INFO: prediction results:", result)
