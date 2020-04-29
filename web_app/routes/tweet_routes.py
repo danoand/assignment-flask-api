@@ -1,4 +1,10 @@
-from flask import Blueprint, jsonify, render_template, request, flash, redirect, url_for
+from flask import (Blueprint, 
+    jsonify, 
+    render_template, 
+    request, 
+    flash, 
+    redirect, 
+    url_for)
 
 from web_app.models import db, Tweet, parse_rows
 
