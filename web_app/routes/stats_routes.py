@@ -42,8 +42,9 @@ def twitoff_predict():
     # Grab tweet embeddings associated with the entered data
     tweet_embeddings = []
     tweet_labels     = []
-    user_a = User.query.filter(User.screen_name == screen_name_a)
-    user_b = User.query.filter(User.screen_name == screen_name_b)
+    # Fetch the objects for user a and user b from the database
+    user_a = User.query.filter(User.screen_name == screen_name_a).one()
+    user_b = User.query.filter(User.screen_name == screen_name_b).one()
 
     tweets_a   = user_a.tweets 
     tweets_b   = user_b.tweets
@@ -54,13 +55,18 @@ def twitoff_predict():
         tweet_embeddings.append(tweet.embedding)
         tweet_labels.append(tweet.user.screen_name)
 
+    print("EMBEDDINGS:", len(tweet_embeddings), "LABELS:", len(tweet_labels))
+
     # Define and fit a model
-    print(f"INFO: generating and fitting a Logsitic Regression model")
+    print(f"INFO: generating a Logistic Regression model")
     classifier = LogisticRegression(
         random_state=0,
         solver="lbfgs",
         multi_class="multinomial"
     )
+    print(f"INFO: fitting the Logistic Regression model")
+    print(f"shape tweet_embeddings: {tweet_embeddings.shape}")
+    print(f"shape tweet_labels: {tweet_labels.shape}")
     classifier.fit(tweet_embeddings, tweet_labels)
 
     # Generate a prediction
