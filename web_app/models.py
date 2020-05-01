@@ -1,5 +1,5 @@
 # Import ORM and database migrations packages/modules
-from flask_sqlalchemy import SQLAlchemy 
+import SQLAlchemy 
 from flask_migrate import Migrate 
 
 # Create a SQLAlchemy databse object
