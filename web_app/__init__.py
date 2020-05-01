@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 
 from web_app.models import db, migrate
@@ -7,8 +8,8 @@ from web_app.routes.twitter_routes  import twitter_routes
 from web_app.routes.admin_routes    import admin_routes
 from web_app.routes.stats_routes    import stats_routes
 
-DATABASE_URI = "sqlite://///Users/danoand/go/src/github.com/danoand/assignment-flask-api/twitoff-dev.db"
-SECRET_KEY = "my_secret_key_123"
+DATABASE_URI = os.environ.get('DATABASE_URL')
+SECRET_KEY = os.environ.get('APP_SECRET_KEY')
 
 def create_app():
     app = Flask(__name__)
