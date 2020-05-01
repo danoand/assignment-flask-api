@@ -11,6 +11,8 @@ flask = "*"
 tweepy = "*"
 psycopg2-binary = "*"
 gunicorn = "*"
+sqlalchemy = "*"
+basilica = "*"
 
 [requires]
 python_version = "3.7"
