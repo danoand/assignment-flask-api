@@ -36,7 +36,7 @@ def create_tweet():
     print("FORM DATA:", dict(request.form))
 
     # Create a new Tweet model object
-    new_tweet = Tweet(tweet=request.form["tweet_tweet"], handle=request.form["tweet_handle"])
+    new_tweet = Tweet(full_text=request.form["tweet_tweet"], user_id=request.form["tweet_handle"])
     # Add and commit to the database
     db.session.add(new_tweet)
     db.session.commit()
