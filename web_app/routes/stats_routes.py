@@ -52,6 +52,10 @@ def twitoff_predict():
 
     # Iterate through tweets
     for tweet in all_tweets:
+        if tweet.embedding == None or tweet.embedding == '':
+            # Missing embedding value... let's skip
+            continue
+        
         tweet_embeddings.append(tweet.embedding)
         tweet_labels.append(tweet.user.screen_name)
 
@@ -65,11 +69,12 @@ def twitoff_predict():
         multi_class="multinomial"
     )
     print(f"INFO: fitting the Logistic Regression model")
-    print(f"INFO: type tweet_embeddings: {type(tweet_embeddings)}")
-    print(f"INFO: shape tweet_labels: {type(tweet_labels)}")
+    print(f"INFO: just before the fit step")
     classifier.fit(tweet_embeddings, tweet_labels)
+    print(f"INFO: just after the fit step")
 
     # Generate a prediction
+    print(f"INFO: just before the basilica step")
     example_tweet_embedding = basilica_conn.embed_sentence(tweet_text, model="twitter")
     print(f"INFO: just before the prediction step")
     result = classifier.predict([example_tweet_embedding])
