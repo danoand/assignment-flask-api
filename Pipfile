@@ -9,6 +9,8 @@ verify_ssl = true
 scikit-learn = "*"
 flask = "*"
 tweepy = "*"
+psycopg2-binary = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
