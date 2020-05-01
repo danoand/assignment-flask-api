@@ -24,8 +24,8 @@ def index_route():
 @tweet_routes.route("/tweets")
 def list_tweets_for_humans():
     tweet_records = Tweet.query.all()
-    print(tweet_records)
-    return render_template("tweets.html", message="Here's some tweets", tweets=tweet_records)
+    print(f"INFO: display {len(tweet_records)} tweets to the user")
+    return render_template("tweets.html", message="Here are some tweets!", tweets=tweet_records)
 
 @tweet_routes.route("/tweets/new")
 def new_tweet():
@@ -42,5 +42,5 @@ def create_tweet():
     db.session.commit()
 
     # Display a flash meessage
-    flash(f"Tweet '{new_tweet.tweet}' created successfully!", "success")
+    flash(f"Tweet '{new_tweet.full_text}' created successfully!", "success")
     return redirect("/tweets")

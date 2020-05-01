@@ -17,7 +17,7 @@ class User(db.Model):
 
 # Define a Tweet class which "extends" the Model class
 class Tweet(db.Model):
-    id          = db.Column(db.Integer, primary_key=True)
+    id          = db.Column(db.BigInteger, primary_key=True)
     user_id     = db.Column(db.BigInteger, db.ForeignKey("user.id"))
     full_text   = db.Column(db.String(512))
     embedding   = db.Column(db.PickleType) # used to serialize a Python object (and store in the db)

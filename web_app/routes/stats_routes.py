@@ -65,13 +65,15 @@ def twitoff_predict():
         multi_class="multinomial"
     )
     print(f"INFO: fitting the Logistic Regression model")
-    print(f"shape tweet_embeddings: {tweet_embeddings.shape}")
-    print(f"shape tweet_labels: {tweet_labels.shape}")
+    print(f"INFO: type tweet_embeddings: {type(tweet_embeddings)}")
+    print(f"INFO: shape tweet_labels: {type(tweet_labels)}")
     classifier.fit(tweet_embeddings, tweet_labels)
 
     # Generate a prediction
     example_tweet_embedding = basilica_conn.embed_sentence(tweet_text, model="twitter")
+    print(f"INFO: just before the prediction step")
     result = classifier.predict([example_tweet_embedding])
+    print(f"INFO: just after the prediction step")
 
     return render_template("prediction_results.html",
         screen_name_a=screen_name_a,

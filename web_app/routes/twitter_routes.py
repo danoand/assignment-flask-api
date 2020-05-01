@@ -36,7 +36,7 @@ def fetch_user_data(screen_name):
     statuses = twitter_api.user_timeline(
         screen_name, 
         tweet_mode="extended", 
-        count=50)
+        count=10)
     print("INFO: just recevied Twitter statuses number = ", len(statuses))
 
     # Fetch embeddings for each tweet
@@ -49,6 +49,7 @@ def fetch_user_data(screen_name):
 
     # store tweets and associated embeddings in the database
     ctr = 0
+    print("INFO: just before look")
     for idx, status in enumerate(statuses):
 
         db_tweet            = Tweet.query.get(status.id) or Tweet(id=status.id)
@@ -56,11 +57,11 @@ def fetch_user_data(screen_name):
         db_tweet.full_text  = status.full_text 
         embedding           = embeddings[idx]
 
-        db_tweet.embed_sentences = embedding
+        db_tweet.embedding = embedding
         db.session.add(db_tweet)
         ctr = ctr + 1
 
-    print("INFO: storing and tweets and embeddings in the database number = ", ctr)
+    print("INFO: storing tweets and embeddings in the database number = ", ctr)
     db.session.commit()
 
     flash(f'Just stored tweet and embedding information into the database! Number of updates: {ctr}', "success")
